@@ -5,9 +5,9 @@ public class Jogador {
 	private int cod;
 	private String nome;
 	private int idade;
-	private Time time;
+	private int time; //substituir no futuro pela classe time
 	
-	public Jogador(int cod, String nome, int idade, Time time) {
+	public Jogador(int cod, String nome, int idade, int time) {
 		this.setCod(cod);
 		this.setNome(nome);
 		this.setIdade(idade);
@@ -38,11 +38,11 @@ public class Jogador {
 		this.idade = idade;
 	}
 
-	public Time getTime() {
+	public int getTime() {
 		return time;
 	}
 
-	public void setTime(Time time) {
+	public void setTime(int time) {
 		this.time = time;
 	}
 

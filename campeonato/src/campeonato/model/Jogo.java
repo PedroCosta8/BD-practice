@@ -4,13 +4,13 @@ public class Jogo {
 	
 	private int cod;
 	private String resultado;
-	private Time time_a, time_b;
+	private int time_a, time_b; //substituir pela classe Time futuramente
 	
-	public Jogo(int cod, String resultado, Time time_a, Time time_b) {
+	public Jogo(int cod, String resultado, int time_a, int time_b) {
 		this.setCod(cod);
 		this.setResultado(resultado);
-		this.setTime_a(time_a);
-		this.setTime_b(time_b);
+		this.setTimeA(time_a);
+		this.setTimeB(time_b);
 	}
 
 	public int getCod() {
@@ -29,19 +29,19 @@ public class Jogo {
 		this.resultado = resultado;
 	}
 
-	public Time getTime_b() {
+	public int getTimeB() {
 		return time_b;
 	}
 
-	public void setTime_b(Time time_b) {
+	public void setTimeB(int time_b) {
 		this.time_b = time_b;
 	}
 
-	public Time getTime_a() {
+	public int getTimeA() {
 		return time_a;
 	}
 
-	public void setTime_a(Time time_a) {
+	public void setTimeA(int time_a) {
 		this.time_a = time_a;
 	}
 	
