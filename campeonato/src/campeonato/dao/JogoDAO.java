@@ -15,12 +15,13 @@ public class JogoDAO implements DaoInterface{
 		PreparedStatement prestm;
 		Jogo jogo = (Jogo) o;
 		try {
-			String sql = "ISERT INTO Jogo VALUES(?,?,?,?)";
+			String sql = "INSERT INTO Jogo VALUES(?,?,?,?)";
 			prestm = ConexaoDB.getConexao().prepareStatement(sql);
 			prestm.setLong(1, jogo.getCod());
 			prestm.setString(2, jogo.getResultado());
 			prestm.setLong(3, jogo.getTimeA());
 			prestm.setLong(4, jogo.getTimeB());
+			prestm.executeUpdate();
 			ConexaoDB.fecharConexao();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

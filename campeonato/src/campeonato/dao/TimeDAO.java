@@ -14,11 +14,12 @@ public class TimeDAO implements DaoInterface{
 		PreparedStatement prestm;
 		Time time = (Time) o;
 		try {
-			String sql = "ISERT INTO Time VALUES(?,?,?)";
+			String sql = "INSERT INTO Time VALUES(?, ?, ?)";
 			prestm = ConexaoDB.getConexao().prepareStatement(sql);
 			prestm.setLong(1, time.getCod());
 			prestm.setString(2, time.getNome());
 			prestm.setString(3, time.getData_fundacao());
+			prestm.executeUpdate();
 			ConexaoDB.fecharConexao();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
