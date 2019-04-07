@@ -2,7 +2,6 @@ package campeonato.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import campeonato.connection.ConexaoDB;
 import campeonato.model.Jogador;
@@ -10,7 +9,7 @@ import campeonato.model.Jogador;
 public class JogadorDAO implements DaoInterface{
 
 	@Override
-	public void salvar(Object o) {
+	public String salvar(Object o) {
 		PreparedStatement prestm;
 		Jogador jogador = (Jogador) o;
 		try {
@@ -22,14 +21,16 @@ public class JogadorDAO implements DaoInterface{
 			prestm.setLong(4, jogador.getTime());
 			prestm.executeUpdate();
 			ConexaoDB.fecharConexao();
+			return "";
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
+			return "";
 		}
 		
 	}
 
 	@Override
-	public ArrayList<Object> listar() {
+	public String listar() {
 		// TODO Auto-generated method stub
 		return null;
 	}

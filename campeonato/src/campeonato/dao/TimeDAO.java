@@ -1,8 +1,8 @@
 package campeonato.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import campeonato.connection.ConexaoDB;
 import campeonato.model.Time;
@@ -10,7 +10,7 @@ import campeonato.model.Time;
 public class TimeDAO implements DaoInterface{
 
 	@Override
-	public void salvar(Object o){
+	public String salvar(Object o){
 		PreparedStatement prestm;
 		Time time = (Time) o;
 		try {
@@ -21,15 +21,32 @@ public class TimeDAO implements DaoInterface{
 			prestm.setString(3, time.getData_fundacao());
 			prestm.executeUpdate();
 			ConexaoDB.fecharConexao();
+			return "Salvo com sucesso";
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
+			return "Impossivel salvar dados";
 		}
 	}
 
 	@Override
-	public ArrayList<Object> listar() {
-		// TODO Auto-generated method stub
-		return null;
+	public String listar() {
+		PreparedStatement prestm;
+		String result = "\nTime | Data de Fundação\n";
+		try {
+			String sql = "SELECT * FROM Time";
+			prestm = ConexaoDB.getConexao().prepareStatement(sql);
+			ResultSet rs = prestm.executeQuery(sql);
+			while(rs.next()) {
+				String nome = rs.getString(2);
+			    String fund = rs.getString(3);
+			    result += nome + " | " + fund + "\n";
+			}
+			ConexaoDB.fecharConexao();
+			return result;
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
