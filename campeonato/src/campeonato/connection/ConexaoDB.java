@@ -9,7 +9,14 @@ public class ConexaoDB{
 	private static Connection connection = null;
 	private static String status = "Não conectou...";
 	
-	public static Connection getConexao() throws ClassNotFoundException, SQLException{
+	public static Connection getConexao() throws SQLException, ClassNotFoundException {
+		if(connection == null || connection.isClosed()) {
+			connection = criarConexao();
+		}
+		return connection;
+	}
+	
+	public static Connection criarConexao() throws ClassNotFoundException, SQLException{
 		try {
 			String driver = "com.mysql.cj.jdbc.Driver";
 	        String user = "root";

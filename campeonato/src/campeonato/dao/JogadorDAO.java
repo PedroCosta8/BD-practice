@@ -36,14 +36,13 @@ public class JogadorDAO implements DaoInterface{
 	}
 
 	@Override
-	public void deletar() {
-		// TODO Auto-generated method stub
-		
+	public String deletar(int cod) {
+		return null;
 	}
 
 	@Override
-	public void atualizar() {
-		// TODO Auto-generated method stub
+	public String atualizar(Object o) {
+		return null;
 		
 	}
 

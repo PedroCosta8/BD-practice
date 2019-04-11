@@ -18,7 +18,9 @@ public class MainCampeonato {
 		String menu = "--------MENU--------\n0 - Sair\n1 - Inserir Time\n"
 				+ "2 - Inserir Jogador\n"
 				+ "3 - Inserir Jogo\n"
-				+ "4 - Listar times\n";
+				+ "4 - Listar times\n"
+				+ "5 - Deletar time\n"
+				+ "6 - Atualizar time\n";
 		
 		boolean run = true;
 
@@ -74,6 +76,22 @@ public class MainCampeonato {
 				break;
 			case 4:
 				System.out.println(timedao.listar());
+				break;
+			case 5:
+				System.out.println("Digite o codigo do time que se deseja excluir");
+				int cod4 = dados.nextInt();
+				System.out.println(timedao.deletar(cod4));
+				break;
+			case 6:
+				System.out.println("Digite o codigo do time:");
+				int cod5 = dados.nextInt();
+				dados = new Scanner(System.in);
+				System.out.println("Digite o novo nome do time:");
+				String nomeTime2 = dados.nextLine();
+				System.out.println("Digite a nova data fundação do time:");
+				String datafundacao2 = dados.nextLine();
+				Time time2 = new Time(cod5,nomeTime2, datafundacao2);
+				System.out.println(timedao.atualizar(time2));
 				break;
 			}
 

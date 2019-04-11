@@ -20,7 +20,6 @@ public class TimeDAO implements DaoInterface{
 			prestm.setString(2, time.getNome());
 			prestm.setString(3, time.getData_fundacao());
 			prestm.executeUpdate();
-			ConexaoDB.fecharConexao();
 			return "Salvo com sucesso";
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -41,7 +40,6 @@ public class TimeDAO implements DaoInterface{
 			    String fund = rs.getString(3);
 			    result += nome + " | " + fund + "\n";
 			}
-			ConexaoDB.fecharConexao();
 			return result;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -50,14 +48,35 @@ public class TimeDAO implements DaoInterface{
 	}
 
 	@Override
-	public void deletar() {
-		// TODO Auto-generated method stub
-		
+	public String deletar(int cod) {
+		PreparedStatement prestm;
+		try {
+			String sql = "DELETE FROM Time WHERE cod="+cod;
+			prestm = ConexaoDB.getConexao().prepareStatement(sql);
+			prestm.executeUpdate();
+			return "Deletado com sucesso";
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			return "Impossível deletar os dados";
+		}
 	}
 
 	@Override
-	public void atualizar() {
-		// TODO Auto-generated method stub
+	public String atualizar(Object o) {
+		PreparedStatement prestm;
+		Time time = (Time) o;
+		try {
+			String sql = "UPDATE Time SET nome=?, data_fundacao=? WHERE cod=?";
+			prestm = ConexaoDB.getConexao().prepareStatement(sql);
+			prestm.setString(1,time.getNome());
+			prestm.setString(2, time.getData_fundacao());
+			prestm.setInt(3, time.getCod());
+			prestm.executeUpdate();
+			return "Atualizado com sucesso";
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			return "Impossível atualizar os dados";
+		}
 		
 	}
 
